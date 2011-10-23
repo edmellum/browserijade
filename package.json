@@ -1,6 +1,6 @@
 {
 	"name": "browserijade",
-	"version": "0.0.1",
+	"version": "0.1.0",
 	"description": "A Browserify middleware that pre-compiles Jade templates on the server and uses the light-weight Jade runtime made for the browser to render them on the client.",
 	"keywords": ["browserify", "middleware", "jade", "template", "view"],
 	"author": "David Ed Mellum <david@edmellum.com> (http://edmellum.com)",
