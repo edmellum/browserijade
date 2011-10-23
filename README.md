@@ -18,6 +18,7 @@ app.use(bundle)
 ```
 
 **Client-side:**
+
 ```javascript
 var browserijade = require("browserijade").renderFile
 
