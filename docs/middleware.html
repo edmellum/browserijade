@@ -1,0 +1,38 @@
+<!DOCTYPE html>  <html> <head>   <title>middleware.coffee</title>   <meta http-equiv="content-type" content="text/html; charset=UTF-8">   <link rel="stylesheet" media="all" href="docco.css" /> </head> <body>   <div id="container">     <div id="background"></div>          <table cellpadding="0" cellspacing="0">       <thead>         <tr>           <th class="docs">             <h1>               middleware.coffee             </h1>           </th>           <th class="code">           </th>         </tr>       </thead>       <tbody>                               <tr id="section-1">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-1">&#182;</a>               </div>               <p>Browserijade
+(c) 2011 David Ed Mellum
+Browserijade may be freely distributed under the MIT license.</p>             </td>             <td class="code">               <div class="highlight"><pre><span class="nv">path = </span><span class="nx">require</span> <span class="s2">&quot;path&quot;</span>
+<span class="nv">fs = </span><span class="nx">require</span> <span class="s2">&quot;fs&quot;</span>
+
+<span class="nv">glob = </span><span class="nx">require</span> <span class="s2">&quot;glob&quot;</span>
+<span class="nv">jade = </span><span class="nx">require</span> <span class="s2">&quot;jade&quot;</span></pre></div>             </td>           </tr>                               <tr id="section-2">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-2">&#182;</a>               </div>               <p>Export a function that returns the actual middleware
+so we can take some arguments.</p>             </td>             <td class="code">               <div class="highlight"><pre><span class="nv">module.exports = </span><span class="nf">(templates_dir, ignores)-&gt;</span>
+	<span class="nx">cacheRuntime</span><span class="p">()</span>
+
+	<span class="nv">templates = </span><span class="nx">getTemplates</span><span class="p">(</span><span class="nx">templates_dir</span><span class="p">,</span> <span class="nx">ignores</span><span class="p">)</span>
+
+	<span class="k">return</span> <span class="nf">(bundle)-&gt;</span>
+		<span class="nx">bundle</span><span class="p">.</span><span class="nx">register</span> <span class="s2">&quot;.jade&quot;</span><span class="p">,</span> <span class="nx">jadeHandler</span>
+		<span class="nx">bundle</span><span class="p">.</span><span class="nx">require</span> <span class="nx">templates</span></pre></div>             </td>           </tr>                               <tr id="section-3">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-3">&#182;</a>               </div>               <p>Cache the light-weight runtime in <code>__dirname</code> to help
+Browserify find it.</p>             </td>             <td class="code">               <div class="highlight"><pre><span class="nv">cacheRuntime = </span><span class="o">-&gt;</span>
+	<span class="nv">jade_path = </span><span class="nx">require</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="s2">&quot;jade&quot;</span><span class="p">)</span>
+	<span class="nv">jade_runtime_path = </span><span class="nx">path</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="nx">jade_path</span><span class="p">,</span> <span class="s2">&quot;../lib/runtime.js&quot;</span><span class="p">)</span>
+
+	<span class="nv">runtime = </span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span> <span class="nx">path</span>
+	<span class="nx">fs</span><span class="p">.</span><span class="nx">writeFileSync</span> <span class="nx">__dirname</span> <span class="o">+</span> <span class="s2">&quot;/runtime.js&quot;</span><span class="p">,</span> <span class="nx">runtime</span></pre></div>             </td>           </tr>                               <tr id="section-4">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-4">&#182;</a>               </div>               <p>Take a Jade file, pre-compile it, then make sure
+it's getting exported so it'll be require-able from
+Browserify.</p>             </td>             <td class="code">               <div class="highlight"><pre><span class="nv">jadeHandler = </span><span class="nf">(body)-&gt;</span>
+	<span class="nv">compiled = </span><span class="nx">jade</span><span class="p">.</span><span class="nx">compile</span><span class="p">(</span><span class="nx">body</span><span class="p">,</span> <span class="nv">client: </span><span class="kc">true</span><span class="p">).</span><span class="nx">toString</span><span class="p">()</span>
+	<span class="k">return</span> <span class="s2">&quot;module.exports = #{compiled}&quot;</span></pre></div>             </td>           </tr>                               <tr id="section-5">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-5">&#182;</a>               </div>               <p>Return all Jade templates in <code>templates_dir</code> that doesn't
+have a file name that's in <code>ignores</code>.</p>             </td>             <td class="code">               <div class="highlight"><pre><span class="nv">getTemplates = </span><span class="nf">(templates_dir, ignores)-&gt;</span>
+	<span class="nv">templates_dir = </span><span class="nx">path</span><span class="p">.</span><span class="nx">normalize</span> <span class="nx">templates_dir</span>
+	<span class="nx">ignores</span> <span class="o">?=</span> <span class="p">[]</span>
+
+	<span class="nv">template_files = </span><span class="nx">glob</span><span class="p">.</span><span class="nx">globSync</span><span class="p">(</span><span class="nx">templates_dir</span> <span class="o">+</span> <span class="s2">&quot;/*&quot;</span><span class="p">)</span>
+	<span class="nv">templates = </span><span class="p">[]</span>
+	<span class="k">for</span> <span class="nx">template</span> <span class="k">in</span> <span class="nx">template_files</span>
+		<span class="k">for</span> <span class="nx">ignore</span> <span class="k">in</span> <span class="nx">ignores</span>
+			<span class="k">if</span> <span class="nx">template</span> <span class="o">!=</span> <span class="nx">path</span><span class="p">.</span><span class="nx">join</span> <span class="nx">templates_dir</span><span class="p">,</span> <span class="nx">ignore</span>
+				<span class="nx">templates</span><span class="p">.</span><span class="nx">push</span> <span class="nx">template</span>
+	<span class="k">return</span> <span class="nx">templates</span>
+
+</pre></div>             </td>           </tr>                </tbody>     </table>   </div> </body> </html> 

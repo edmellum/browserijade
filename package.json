@@ -1,0 +1,29 @@
+{
+	"name": "browserijade",
+	"version": "0.0.1",
+	"description": "A Browserify middleware that pre-compiles Jade templates on the server and uses the light-weight Jade runtime made for the browser to render them on the client.",
+	"keywords": ["browserify", "middleware", "jade", "template", "view"],
+	"author": "David Ed Mellum <david@edmellum.com> (http://edmellum.com)",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/edmellum/browserify"
+	},
+	"bugs" : {
+		"url": "http://github.com/edmellum/browserijade/issues"
+	},
+	"licenses": [
+		{
+			"type": "MIT",
+			"url": "http://github.com/edmellum/raw/master/LICENSE"
+		}
+	],
+	"dependencies": {
+		"jade": "*",
+		"glob": "*"
+	},
+	"devDependencies": {
+		"coffee-script": "*"
+	},
+	"main": "./lib/middleware",
+	"browserify": "./lib/browserijade"
+}
