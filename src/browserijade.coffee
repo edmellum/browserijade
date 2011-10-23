@@ -4,6 +4,16 @@
 
 jade = require "./runtime"
 
-# Simple wrapper to simplify rendering.
-module.exports = (template)->
+# Render a pre-compiled Jade template in a self-executing closure.
+renderString = (template)->
 	eval template
+
+renderFile = (path)->
+	path = "/#{path}.jade"
+	template = require path
+	renderString template
+
+module.exports = {
+	renderString
+	renderFile
+}
