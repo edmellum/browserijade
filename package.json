@@ -6,7 +6,7 @@
 	"author": "David Ed Mellum <david@edmellum.com> (http://edmellum.com)",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/edmellum/browserify"
+		"url": "https://github.com/edmellum/browserijade"
 	},
 	"bugs" : {
 		"url": "http://github.com/edmellum/browserijade/issues"
