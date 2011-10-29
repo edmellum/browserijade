@@ -2,16 +2,17 @@
 # (c) 2011 David Ed Mellum
 # Browserijade may be freely distributed under the MIT license.
 
-jade = require "./runtime"
+window.jade = require "./runtime"
 
 # Render a pre-compiled Jade template in a self-executing closure.
 renderString = (template)->
 	eval template
 
-renderFile = (path)->
+renderFile = (path, locals)->
+	locals ?= {}
 	path = "/#{path}.jade"
 	template = require path
-	renderString template
+	template locals
 
 module.exports = {
 	renderString
