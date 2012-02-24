@@ -19,7 +19,7 @@
 	],
 	"dependencies": {
 		"jade": "*",
-		"glob": "*"
+		"glob": "2.0.9"
 	},
 	"devDependencies": {
 		"coffee-script": "*"
