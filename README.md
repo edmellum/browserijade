@@ -12,7 +12,8 @@ var browserify = require("browserify"),
 	browserijade = require("browserijade")
 
 var bundle = browserify()
-bundle.use(browserijade(__dirname + "/views"))
+bundle.use(browserijade.browserijade(__dirname + "/views"))
+bundle.require('browserijade');
 
 app.use(bundle)
 ```
