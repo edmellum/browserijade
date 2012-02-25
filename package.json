@@ -18,12 +18,10 @@
 		}
 	],
 	"dependencies": {
-		"jade": "*",
-		"glob": "*"
+		"jade": "0.20.x",
+		"glob": "3.1.x",
+		"underscore": "*"
 	},
-	"devDependencies": {
-		"coffee-script": "*"
-	},
-	"main": "./lib/middleware",
-	"browserify": "./lib/browserijade"
+	"main": "./lib/server",
+	"browserify": "./lib/browser"
 }

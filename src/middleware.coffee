@@ -42,7 +42,7 @@ getTemplates = (templates_dir, ignores)->
 	templates_dir = path.normalize templates_dir
 	ignores ?= []
 
-	templates = glob.globSync(templates_dir + '/*')
+	templates = glob.sync(templates_dir + '/*')
 	for template in templates
 		for ignore in ignores
 			if template == path.join templates_dir, ignore
