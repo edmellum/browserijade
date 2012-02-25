@@ -32,8 +32,8 @@ cacheRuntime = ->
 # Take a Jade file, pre-compile it, then make sure
 # it's getting exported so it'll be require-able from
 # Browserify.
-preCompile = (body)->
-	compiled = jade.compile(body, client: true).toString()
+preCompile = (body, filename)->
+	compiled = jade.compile(body, filename: filename, client: true).toString()
 	return "module.exports = #{compiled}"
 
 # Return all Jade templates in `templates_dir` that doesn't
