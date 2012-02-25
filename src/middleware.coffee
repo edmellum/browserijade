@@ -5,6 +5,7 @@
 path = require 'path'
 fs = require 'fs'
 
+_ = require 'underscore'
 glob = require 'glob'
 jade = require 'jade'
 
@@ -48,7 +49,8 @@ getTemplates = (templates_dir, ignores)->
 				delete templates[template]
 	return templates
 
-module.exports = {
-	browserijade
+module.exports = browserijade
+
+_.extend module.exports, {
 	preCompile 
 }
