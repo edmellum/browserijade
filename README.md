@@ -20,7 +20,7 @@ app.use(bundle)
 **Client-side:**
 
 ```javascript
-var browserijade = require("browserijade").renderFile
+var browserijade = require("browserijade")
 
 var article = browserijade("article", {title: "NEWS!"})
 $("body").html(article)
