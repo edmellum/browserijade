@@ -1,6 +1,6 @@
 {
   "name": "browserijade",
-  "version": "0.5.1",
+  "version": "0.5.5",
   "description": "A Browserify middleware that pre-compiles Jade templates on the server and uses the light-weight Jade runtime made for the browser to render them on the client.",
   "keywords": [
     "browserify",
