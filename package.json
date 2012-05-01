@@ -28,13 +28,15 @@
     "glob": "3.1.x",
     "underscore": "*"
   },
+  "devDependencies": {
+  	"browserify": "1.10.x"
+  },
+  "optionalDependencies": {},
   "main": "./lib/middleware",
   "scripts": {
     "test": "node ./test/tests.js"
   },
   "browserify": "./lib/browserijade",
-  "devDependencies": {},
-  "optionalDependencies": {},
   "engines": {
     "node": "*"
   }
