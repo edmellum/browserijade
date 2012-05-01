@@ -1,4 +1,5 @@
 var vm = require('vm');
+var path = require('path');
 var assert = require('assert');
 
 var browserify = require('browserify');
@@ -14,7 +15,7 @@ bundle.require('./browserijade', {target: 'browserijade', basedir: './lib', root
 var src = bundle.bundle();
 
 // Make sure this bundle isn't FUBAR.
-assert.ok(typeof src === 'string');
+assert.ok('string' === typeof src);
 assert.ok(src.length > 0);
 
 // Setup a VM to run the bundle in.
@@ -26,15 +27,29 @@ assert.deepEqual(
     Object.keys(browserijade_client).sort(),
     Object.keys(sandbox.require('browserijade')).sort()
 );
+console.log(src)
+// Are the Jade templates cool?
+assert.ok('function' === typeof sandbox.require('test.jade'));
 
-// Render the test page.
+// Basic test page.
 assert.equal(
     sandbox.require('browserijade')('test'),
     '<!DOCTYPE html><html lang=\"en\"><title>test</title></html><body><h1>Test</h1></body>'
 );
 
-// Render the test page.
+// Template in a subfolder.
 assert.equal(
     sandbox.require('browserijade')('subfolder/subtest'),
     '<!DOCTYPE html><html lang=\"en\"><title>subtest</title></html><body><h1>Subtest</h1></body>'
 );
+
+// Jade inheritance.
+assert.equal(
+    sandbox.require('browserijade')('child'),
+    '<!DOCTYPE html><html lang=\"en\"><title>test</title></html><body><h1>Inheritance!</h1></body>'
+);
+// Path leakage.
+var folderPath = path.join(__dirname, '..');
+folderPath = folderPath.replace(/\\/g, '\\\\\\\\');
+var folderRegex = new RegExp('.*' + folderPath + '.*', 'g');
+assert.ok(!src.match(folderRegex));
