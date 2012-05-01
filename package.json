@@ -1,38 +1,30 @@
 {
-  "name": "browserijade",
-  "version": "0.5.0",
-  "description": "A Browserify middleware that pre-compiles Jade templates on the server and uses the light-weight Jade runtime made for the browser to render them on the client.",
-  "keywords": [
-    "browserify",
-    "middleware",
-    "jade",
-    "template",
-    "view"
-  ],
-  "author": "David Ed Mellum <david@edmellum.com> (http://edmellum.com)",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/edmellum/browserijade.git"
-  },
-  "bugs": {
-    "url": "http://github.com/edmellum/browserijade/issues"
-  },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "http://github.com/edmellum/raw/master/LICENSE"
-    }
-  ],
-  "dependencies": {
-    "jade": "0.20.x",
-    "glob": "3.1.x",
-    "underscore": "*"
-  },
-  "main": "./lib/server",
-  "browserify": "./lib/browser",
-  "devDependencies": {},
-  "optionalDependencies": {},
-  "engines": {
-    "node": "*"
-  }
+	"name": "browserijade",
+	"version": "0.3.0",
+	"description": "A Browserify middleware that pre-compiles Jade templates on the server and uses the light-weight Jade runtime made for the browser to render them on the client.",
+	"keywords": ["browserify", "middleware", "jade", "template", "view"],
+	"author": "David Ed Mellum <david@edmellum.com> (http://edmellum.com)",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/edmellum/browserijade"
+	},
+	"bugs" : {
+		"url": "http://github.com/edmellum/browserijade/issues"
+	},
+	"licenses": [
+		{
+			"type": "MIT",
+			"url": "http://github.com/edmellum/raw/master/LICENSE"
+		}
+	],
+	"dependencies": {
+		"jade": "0.25.x",
+		"glob": "3.1.x",
+		"underscore": "*"
+	},
+	"main": "./lib/middleware",
+	"scripts": {
+		"test": "node ./test/tests.js"
+	},
+	"browserify": "./lib/browserijade"
 }
