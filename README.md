@@ -4,9 +4,15 @@ A Browserify middleware that pre-compiles Jade templates on the server and uses 
 
 [![Build Status](https://secure.travis-ci.org/edmellum/browserijade.png)](http://travis-ci.org/edmellum/browserijade)
 
+## Installation
+`$ npm install browserijade`
+
+## Running the tests
+`$ npm test`
+
 # Example
 
-## Including all Jade templates with a connect-based framework like Express.
+## Including all Jade templates with a connect-based framework like Express
 **Server-side:**
 
 ```javascript
@@ -28,7 +34,7 @@ var article = browserijade("article", {title: "NEWS!"})
 $("body").html(article)
 ```
 
-## Just rendering templates on the client-side without including any templates.
+## Just rendering templates on the client-side without including any templates
 **Server-side:**
 
 ```javascript
