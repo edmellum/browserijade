@@ -5,10 +5,14 @@ A Browserify middleware that pre-compiles Jade templates on the server and uses 
 [![Build Status](https://secure.travis-ci.org/edmellum/browserijade.png)](http://travis-ci.org/edmellum/browserijade)
 
 ## Installation
-`$ npm install browserijade`
+```bash
+$ npm install browserijade
+```
 
 ## Running the tests
-`$ npm test`
+```bash
+$ npm test
+```
 
 # Example
 
