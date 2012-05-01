@@ -1,0 +1,37 @@
+info it worked if it ends with ok
+verbose cli [ 'C:\\Program Files (x86)\\nodejs\\\\node.exe',
+verbose cli   'C:\\Program Files (x86)\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+verbose cli   'version',
+verbose cli   '0.5.1' ]
+info using npm@1.1.15
+info using node@v0.6.14
+verbose C:\Program Files (x86)\nodejs\\node.exe node symlink
+verbose config file C:\Users\David\.npmrc
+verbose config file C:\Program Files (x86)\nodejs\etc\npmrc
+verbose config file C:\Program Files (x86)\nodejs\node_modules\npm\npmrc
+verbose caching C:\Users\David\Dropbox\Projects\Personal\nodejs\browserijade\package.json
+verbose loadDefaults browserijade@0.3.0
+silly exec git "status" "--porcelain"
+silly spawning [ 'git', [ 'status', '--porcelain' ], null ]
+silly exec git "add" "package.json"
+silly spawning [ 'git', [ 'add', 'package.json' ], null ]
+ERR! Error: `git "add" "package.json"` failed with 127
+ERR!     at ChildProcess.<anonymous> (C:\Program Files (x86)\nodejs\node_modules\npm\lib\utils\exec.js:49:20)
+ERR!     at ChildProcess.emit (events.js:70:17)
+ERR!     at maybeExit (child_process.js:360:16)
+ERR!     at Socket.<anonymous> (child_process.js:465:7)
+ERR!     at Socket.emit (events.js:67:17)
+ERR!     at Array.1 (net.js:335:10)
+ERR!     at EventEmitter._tickCallback (node.js:192:40)
+ERR! You may report this log at:
+ERR!     <http://github.com/isaacs/npm/issues>
+ERR! or email it to:
+ERR!     <npm-@googlegroups.com>
+ERR! 
+ERR! System Windows_NT 6.1.7601
+ERR! command "C:\\Program Files (x86)\\nodejs\\\\node.exe" "C:\\Program Files (x86)\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "version" "0.5.1"
+ERR! cwd C:\Users\David\Dropbox\Projects\Personal\nodejs\browserijade
+ERR! node -v v0.6.14
+ERR! npm -v 1.1.15
+ERR! message `git "add" "package.json"` failed with 127
+verbose exit [ 1, true ]
