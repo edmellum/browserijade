@@ -1,3 +1,7 @@
+// Browserijade
+// (c) 2011 David Ed Mellum
+// Browserijade may be freely distributed under the MIT license.
+
 var vm = require('vm');
 var path = require('path');
 var assert = require('assert');
@@ -11,7 +15,9 @@ var browserijade_client = require('../lib/browserijade');
 // have to `npm link` just to test.
 var bundle = browserify();
 bundle.use(browserijade(__dirname + '/views'));
-bundle.require('./browserijade', {target: 'browserijade', basedir: './lib', root: '/'})
+bundle.require('./browserijade', {target: 'browserijade', basedir: './lib', root: '/'});
+bundle.ignore('browserijade');
+bundle.addEntry(__dirname + '/entrytest.js');
 var src = bundle.bundle();
 
 // Make sure this bundle isn't FUBAR.
@@ -27,7 +33,7 @@ assert.deepEqual(
     Object.keys(browserijade_client).sort(),
     Object.keys(sandbox.require('browserijade')).sort()
 );
-console.log(src)
+
 // Are the Jade templates cool?
 assert.ok('function' === typeof sandbox.require('test.jade'));
 
@@ -48,6 +54,7 @@ assert.equal(
     sandbox.require('browserijade')('child'),
     '<!DOCTYPE html><html lang=\"en\"><title>test</title></html><body><h1>Inheritance!</h1></body>'
 );
+
 // Path leakage.
 var folderPath = path.join(__dirname, '..');
 folderPath = folderPath.replace(/\\/g, '\\\\\\\\');
