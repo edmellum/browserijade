@@ -24,7 +24,7 @@ var browserify = require("browserify"),
 	browserijade = require("browserijade")
 
 var bundle = browserify()
-bundle.use(browserijade(__dirname + "/views"), ['serverThing.jade'], {debug: true})
+bundle.use(browserijade(__dirname + "/views", ['serverThing.jade'], {debug: true}))
 
 app.use(bundle)
 ```
