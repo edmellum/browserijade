@@ -24,12 +24,12 @@
     }
   ],
   "dependencies": {
-    "jade": "0.26.x",
+    "jade": "0.27.x",
     "glob": "3.1.x",
     "underscore": "*"
   },
   "devDependencies": {
-  	"browserify": "1.13.x"
+  	"browserify": "1.15.x"
   },
   "optionalDependencies": {},
   "main": "./lib/middleware",

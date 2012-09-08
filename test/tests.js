@@ -15,8 +15,7 @@ var browserijade_client = require('../lib/browserijade');
 // have to `npm link` just to test.
 var bundle = browserify();
 bundle.use(browserijade(__dirname + '/views'));
-bundle.require('./browserijade', {target: 'browserijade', basedir: './lib', root: '/'});
-bundle.ignore('browserijade');
+bundle.require('browserijade', {target:'browserijade', file: path.join(__dirname, '..', 'lib', 'browserijade.js')});
 bundle.addEntry(__dirname + '/entrytest.js');
 var src = bundle.bundle();
 
@@ -27,6 +26,7 @@ assert.ok(src.length > 0);
 // Setup a VM to run the bundle in.
 var sandbox = { console : console, 'window': {} };
 vm.runInNewContext(src, sandbox);
+sandbox.require = sandbox.window.require;
 
 // Has the client-side code been required correctly?
 assert.deepEqual(
