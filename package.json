@@ -29,7 +29,7 @@
     "underscore": "*"
   },
   "devDependencies": {
-  	"browserify": "1.15.x"
+  	"browserify": "1.16.x"
   },
   "optionalDependencies": {},
   "main": "./lib/middleware",
